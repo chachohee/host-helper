@@ -1,22 +1,34 @@
-# Python bytecode
+# -------------------------------
+# Python Bytecode & Cache
+# -------------------------------
 __pycache__/
 *.py[cod]
 *$py.class
 
-# Virtual environments
+# -------------------------------
+# Virtual Environments
+# -------------------------------
 venv/
-.env/
 .venv/
+.env/
 
-# Environment variables
+# -------------------------------
+# Environment Variables
+# -------------------------------
 *.env
 
-# SQLite database
+# -------------------------------
+# SQLite Database
+# -------------------------------
 db/*.sqlite3
 
-# VSCode / PyCharm settings (선택)
+# -------------------------------
+# VSCode / PyCharm IDE Settings
+# -------------------------------
 .vscode/
 .idea/
 
-# macOS system files
+# -------------------------------
+# macOS System Files
+# -------------------------------
 .DS_Store
