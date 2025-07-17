@@ -1,29 +1,28 @@
-import os
+import time
+import logging
 from datetime import datetime
-from dotenv import load_dotenv
 from ical_parser import parse_ical
 
-# 로그 디렉토리 설정
-LOG_DIR = "logs"
-LOG_FILE = os.path.join(LOG_DIR, "execution.log")
-os.makedirs(LOG_DIR, exist_ok=True)
-
-def write_log(message: str):
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    full_message = f"[{timestamp}] {message}"
-    print(full_message)
-    with open(LOG_FILE, "a") as f:
-        f.write(full_message + "\n")
+# 로그 설정
+logging.basicConfig(
+    filename="logs/execution.log",
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+)
 
 def main():
-    load_dotenv()  # .env 불러오기
-    write_log("🚀 iCal 예약 파서 시작")
+    logging.info("🚀 Host Helper 서버 시작")
 
-    try:
-        parse_ical()
-        write_log("🎉 예약 동기화 완료")
-    except Exception as e:
-        write_log(f"❌ 오류 발생: {e}")
+    while True:
+        logging.info("🔄 예약 동기화 시작")
+
+        try:
+            parse_ical()
+            logging.info("✅ 예약 동기화 완료")
+        except Exception as e:
+            logging.error(f"❌ 에러 발생: {e}")
+
+        time.sleep(60)  # 60초마다 반복
 
 if __name__ == "__main__":
     main()
